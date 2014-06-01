@@ -1,0 +1,186 @@
+<html><head>
+<title>Calculator</title>
+
+</head>
+
+<body>
+<style>
+
+
+
+body{
+text-align:center;
+background: #49a9ec;background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #194b6d), color-stop(1, #49a9ec));
+background-image: -moz-linear-gradient(top,  #194b6d 0%, #49a9ec 100%);
+background-image: -o-linear-gradient(top,  #194b6d 0%, #49a9ec 100%);;
+background-repeat: repeat-x;
+
+background: #88dbf2;background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #095796), color-stop(1, #88dbf2));
+background-image: -moz-linear-gradient(top,  #095796 0%, #88dbf2 100%);
+background-image: -o-linear-gradient(top,  #095796 0%, #88dbf2 100%);;
+background-repeat: repeat-x;
+}
+
+
+div{
+width:90px;
+height:80px;
+margin-top:5px;
+background:rgba(40,40,40,1);
+color:white;
+display:inline-block;
+font-size:35px;
+cursor:pointer;
+border-radius:20px;
+vertical-align:middle;
+line-height: 80px;
+box-shadow: inset rgba(255,255,255, .6) 0 -1px 1px 0;
+}
+
+divv{
+width:90px;
+height:80px;
+margin-top:5px;
+background:rgba(250,250,250, .3);
+color:#666;
+display:inline-block;
+font-size:35px;
+cursor:pointer;
+border-radius:20px;
+vertical-align:middle;
+line-height: 80px;
+box-shadow: inset rgba(255,255,255, .8) 0 -1px 1px 0;
+box-shadow: inset rgba(0,0,0, .8) 0 -1px 1px 0;
+}
+
+div:hover{background:rgba(50,50,50,1);
+box-shadow: inset rgba(255,255,255,1) 0 0 1px 0 ;
+background:rgba(250,250,250, .4);
+}
+
+div:active{background:rgba(255,255,255, 1);}
+
+input{
+width:460px;
+height:60px;
+font-size:30px;
+bborder:2px solid #444;
+text-align:right;
+padding:0 5px;
+border-radius:10px;
+}
+.baraz{
+width:350px;
+}
+
+.shej{
+7background:rgba(230,230,230, .4);
+}
+</style>
+<meta charset="utf-8"> 
+
+<a style="color:#efefef; margin:3px;" href="http://fra.vilsoni.info">Copyright</a><br><br>
+
+<input id="kutia" aautofocus="" type="button"><br><br>
+<div class="shej" onclick="memplus('kutia')">M+</div>
+<div onclick="alo('kutia', 1)">1</div>
+<div onclick="alo('kutia', 2)">2</div>
+<div onclick="alo('kutia', 3)">3</div>
+<div class="shej" onclick="dhogari('kutia', '+')">+</div>
+<br>
+
+<div class="shej" onclick="mem('kutia')">M</div>
+<div onclick="alo('kutia', 4)">4</div>
+<div onclick="alo('kutia', 5)">5</div>
+<div onclick="alo('kutia', 6)">6</div>
+<div class="shej" onclick="dhogari('kutia', '-')">-</div>
+
+<br>
+<div class="shej" onclick="rrenja('kutia')">√</div>
+<div onclick="alo('kutia', 7)">7</div>
+<div onclick="alo('kutia', 8)">8</div>
+<div onclick="alo('kutia', 9)">9</div>
+<div class="shej" onclick="dhogari('kutia', '*')">*</div>
+
+
+<br>
+<div class="shej" onclick="fshi('kutia', '')">C</div>
+<div class="shej" onclick="plusminus('kutia', '-')">-/+</div>
+<div onclick="alo('kutia', 0)">0</div>
+<div class="shej" onclick="alo('kutia', '.')">.</div>
+<div class="shej" onclick="dhogari('kutia', ':')">/</div><br>
+<div class="baraz" onclick="baraz('kutia', '=')">=</div>
+
+
+<script>
+var ishte;
+var ishte1;
+var veprimi;
+
+var memi;
+var memplus;
+
+
+function fokuso(a)   {document.getElementById('kutiaaaaa').focus();}
+function fshi(a, b)  {document.getElementById(a).value=''; fokuso();}
+
+function setValId(a, b) { return document.getElementById(a).value = b;}
+function getValId(a, b)  { return document.getElementById(a).value;}
+
+
+function alo(a, b){
+ishte = getValId(a);
+setValId(a, ishte + b);
+fokuso();
+}
+
+function plusminus(a, b){
+ishte = getValId(a);
+
+if(ishte == "-") {setValId(a,"") ; } 
+if(ishte == "")  {setValId(a,"-"); } 
+ishte =  +ishte;
+
+
+if(ishte>0){ setValId(a, "-"+ishte)} 
+if(ishte<0){ishte *= -1; setValId(a, ishte);}
+
+fokuso();
+}
+
+function dhogari(a, b){
+ishte1 = getValId(a);
+veprimi = b;
+setValId(a, ''); fokuso();
+}
+
+function baraz(a, b){
+var ishte2 = getValId(a);
+ishte1 = +ishte1;
+ishte2 = +ishte2;
+if (veprimi=='+'){var baraz= (ishte1+ishte2);}
+if (veprimi=='-'){var baraz= (ishte1-ishte2);}
+if (veprimi=='*'){var baraz= (ishte1*ishte2);}
+if (veprimi==':'){var baraz= (ishte1/ishte2);}
+
+//if((baraz =='2')&&(veprimi=='+')){ baraz= "3 per Giten :)";}
+setValId(a, baraz);
+fokuso();
+}
+
+function rrenja(a){
+var ishte2 = getValId(a);
+ishte2 = Math.sqrt(+ishte2);
+setValId(a, ishte2);
+}
+
+
+function memplus(a){
+if (getValId(a) != ''){ memi = getValId(a); setValId(a, '');}
+}
+
+function mem(a){ setValId(a, memi);}
+
+</script>
+
+</body></html>
